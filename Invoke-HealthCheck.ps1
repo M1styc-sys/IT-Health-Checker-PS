@@ -51,12 +51,13 @@ function Invoke-HealthCheck {
     Write-HealthStatus "Memory Usage" $memStatus "$usedPercent% Used"
 
     # 3. CPU Load Check
-    $cpu = Get-CimInstance Win32_Processor | Measure-Object -Property LoadAverage -Average
-    $cpuLoad = [math]::Round($cpu.Average, 2)
-    # Fallback for some systems where LoadAverage is null
-    if ($null -eq $cpuLoad) {
-        $cpuLoad = (Get-Counter '\Processor(_Total)\% Processor Time').CounterSamples.CookedValue
+    try {
+        $cpuLoad = (Get-Counter '\Processor(_Total)\% Processor Time' -ErrorAction Stop).CounterSamples[0].CookedValue
         $cpuLoad = [math]::Round($cpuLoad, 2)
+    } catch {
+        # Fallback for systems where Performance Counters are disabled or unavailable
+        $cpu = Get-CimInstance Win32_Processor | Measure-Object -Property LoadPercentage -Average
+        $cpuLoad = [math]::Round($cpu.Average, 2)
     }
     $cpuStatus = if ($cpuLoad -gt 85) { "CRITICAL" } elseif ($cpuLoad -gt 60) { "WARNING" } else { "OK" }
     Write-HealthStatus "CPU Load" $cpuStatus "$cpuLoad%"
