@@ -1,8 +1,8 @@
-# IT-Health-Checker-PS 🩺
+# IT-Health-Checker-PS 
 
 A professional PowerShell utility designed for IT administrators to quickly assess the health of a Windows machine.
 
-## 🚀 Features
+##  Features
 
 - **Disk Space Monitoring**: Checks the primary drive (C:) and warns if free space is low.
 - **Resource Analysis**: Monitors RAM and CPU usage in real-time.
@@ -10,7 +10,7 @@ A professional PowerShell utility designed for IT administrators to quickly asse
 - **Connectivity Test**: Fast ping check to verify internet access.
 - **Color-Coded Output**: Visual feedback (Green/Yellow/Red) for immediate status identification.
 
-## 🛠️ Installation
+##  Installation
 
 1. **Clone the repository**:
    \`\`\`bash
@@ -23,7 +23,7 @@ A professional PowerShell utility designed for IT administrators to quickly asse
    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    \`\`\`
 
-## 📖 Usage
+##  Usage
 
 Run the script from a PowerShell terminal:
 
@@ -31,7 +31,7 @@ Run the script from a PowerShell terminal:
 .\Invoke-HealthCheck.ps1
 \`\`\`
 
-## 📊 Output Example
+##  Output Example
 
 \`\`\`text
 --- Windows System Health Report ---
