@@ -1,0 +1,7 @@
+# PowerShell specific
+*.log
+*.tmp
+.vscode/
+.idea/
+bin/
+obj/
